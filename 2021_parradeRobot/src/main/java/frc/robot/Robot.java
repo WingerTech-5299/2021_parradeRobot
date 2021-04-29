@@ -4,7 +4,11 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -13,10 +17,17 @@ import edu.wpi.first.wpilibj.TimedRobot;
  * project.
  */
 public class Robot extends TimedRobot {
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+  
+  WPI_VictorSPX Cont_DriveL = new WPI_VictorSPX(11);
+  WPI_VictorSPX Cont_DriveR = new WPI_VictorSPX(12);
+  
+  DifferentialDrive drive = new DifferentialDrive(Cont_DriveL, Cont_DriveR);
+
+  XboxController Xbox = new XboxController(0);
+
+  Double btn_DriveFB = Xbox.getRawAxis(0);
+  Double btn_DriveSpin = Xbox.getRawAxis(1);
+
   @Override
   public void robotInit() {}
 
@@ -30,10 +41,17 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {}
 
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+  }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    btn_DriveFB = Xbox.getRawAxis(0);
+    btn_DriveSpin = Xbox.getRawAxis(1);
+
+    drive.arcadeDrive(0.8 * btn_DriveFB, 0.8 * btn_DriveSpin);
+  }
 
   @Override
   public void disabledInit() {}
