@@ -17,15 +17,18 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class Robot extends TimedRobot {
   
+  //Motor Controllers
   WPI_VictorSPX Cont_DriveL = new WPI_VictorSPX(11);
   WPI_VictorSPX Cont_DriveR = new WPI_VictorSPX(12);
-  
+
+  //Drivetrain
   DifferentialDrive drive = new DifferentialDrive(Cont_DriveL, Cont_DriveR);
 
+  //Input devices
   XboxController Xbox = new XboxController(0);
 
-  Double btn_DriveFB = Xbox.getRawAxis(5);
-  Double btn_DriveSpin = Xbox.getRawAxis(4);
+  Double btn_DriveFB;
+  Double btn_DriveSpin;
 
   @Override
   public void robotInit() { }
