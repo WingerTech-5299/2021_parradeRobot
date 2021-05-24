@@ -27,8 +27,11 @@ public class Robot extends TimedRobot {
   //Input devices
   XboxController Xbox = new XboxController(0);
 
+  //Buttons
   Double btn_DriveFB;
   Double btn_DriveSpin;
+
+
 
   @Override
   public void robotInit() { }
@@ -49,7 +52,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     btn_DriveFB = Xbox.getRawAxis(5);
-    btn_DriveSpin = Xbox.getRawAxis(4);
+    btn_DriveSpin = Xbox.getRawAxis(0);
 
 
     drive.arcadeDrive(-0.8*btn_DriveFB, 0.8*btn_DriveSpin);
